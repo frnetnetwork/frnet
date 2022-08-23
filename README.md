@@ -1,5 +1,5 @@
-# Contrastive Learning for Click-Through Prediction
-This is our implement for CL4CTR
+# Enhancing CTR Prediction with Context-Aware Feature Representation Learning
+This is our implement for FRNet
 
 ### How to run the code.
 1. Download corresponding datasets. 
