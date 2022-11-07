@@ -43,16 +43,16 @@ class CriteoDataset(torch.utils.data.Dataset):
             shutil.rmtree(cache_path, ignore_errors=True)
             if dataset_path is None:
                 raise ValueError('create cache: failed: dataset_path is None')
-            # 如果没有缓存，还是构建缓存
+
             self.__build_cache(dataset_path, cache_path)
-        #    通过从缓存中获取数据
+
         self.env = lmdb.open(cache_path, create=False, lock=False, readonly=True)
         with self.env.begin(write=False) as txn:
             self.length = txn.stat()['entries'] - 1
             self.field_dims = np.frombuffer(txn.get(b'field_dims'), dtype=np.uint32)
 
     def __getitem__(self, index):
-        # 必须要实现的 从缓存中读取数据
+       
         with self.env.begin(write=False) as txn:
             np_array = np.frombuffer(
                 txn.get(struct.pack('>I', index)), dtype=np.uint32).astype(dtype=np.long)
@@ -60,10 +60,10 @@ class CriteoDataset(torch.utils.data.Dataset):
         return np_array[1:], np_array[0]
 
     def __len__(self):
-        # 必须要实现的
+       
         return self.length
 
-    # 构建缓存
+ 
     def __build_cache(self, path, cache_path):
         temp_path = self.prefix + "train.txt"
         # count feature map
@@ -125,7 +125,7 @@ class CriteoDataset(torch.utils.data.Dataset):
                     continue
                 np_array = np.zeros(self.NUM_FEATS + 1, dtype=np.uint32)
                 np_array[0] = int(values[0])
-                # 先数值型的变量
+               
                 for i in range(1, self.NUM_INT_FEATS + 1):
                     np_array[i] = feat_mapper[i].get(convert_numeric_feature(values[i]), defaults[i])
 
@@ -164,11 +164,10 @@ def get_criteo_dataset_loader_valid(train_path="criteo_train_4000w.txt", test_pa
     test_dataset = CriteoDataset(dataset_path=test_path, cache_path=prefix_c+".criteo_test_valid",rebuild_cache=False)
     train_length = len(train_dataset)
 
-    # 500K的验证集合，训练集合也是500K
+
     valid_length = 5000000
 
-    # 其实这里可以不使用验证集合
-    # 考虑如何划分数据集
+
     train_dataset, valid_dataset = torch.utils.data.random_split(
         train_dataset, [train_length - valid_length, valid_length])
     # train_dataset, valid_dataset = train_dataset[:(train_length - valid_length) + 1], train_dataset[-valid_length:]
