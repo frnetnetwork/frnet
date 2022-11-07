@@ -14,12 +14,14 @@ This is our implement for FRNet
     ```CUDA_VISIBLE_DEVICES=0 python main_ml_base.py --choice 0```
 
 ###  You can cite this article:
- Fangye Wang, Yingxu Wang, Dongsheng Li, Hansu Gu, Tun Lu, Peng Zhang,and Ning Gu. 2022. Enhancing CTR Prediction with Context Aware FeatureRepresentation Learning. In Proceedings of the 44th International ACM SIGIRConference on Research and Development in Inform
+Fangye Wang, Yingxu Wang, Dongsheng Li, Hansu Gu, Tun Lu, Peng Zhang, and Ning Gu. 2022. Enhancing CTR Prediction with Context-Aware Feature Representation Learning. In Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR ’22). 343–352.
 ````
-@inproceedings{wang2021enhancing,
-  title={Enhancing CTR Prediction with Context-Aware Feature Representation Learning},
-  author={Wang, Fangye and Wang, Yingxu and Li, Dongsheng and Gu, Hansu and Lu, Tun and Zhang, Peng and Gu, Ning},
-  booktitle={Proceedings of the 43th International ACM SIGIR Conference on Research and Development in Information Retrieval},
-  year={2021}
+@inproceedings{wang2022frnet,
+author = {Wang, Fangye and Wang, Yingxu and Li, Dongsheng and Gu, Hansu and Lu, Tun and Zhang, Peng and Gu, Ning},
+title = {Enhancing CTR Prediction with Context-Aware Feature Representation Learning},
+booktitle={Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+year = {2022},
+pages = {343–352},
+series = {SIGIR '22}
 }
 ````
